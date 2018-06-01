@@ -22,16 +22,16 @@ public class UserMealsUtil {
         List<UserMealWithExceed> userMealWithExceedList = UserMealsUtil.getFilteredWithExceeded(
                 mealList, LocalTime.of(7, 0),
                 LocalTime.of(12, 0), 2000);
-        for (UserMealWithExceed m : userMealWithExceedList) {
-            System.out.println(m.getDescription() + " " + m.getDateTime() + " " + m.isExceed());
+        for (UserMealWithExceed mealWithExceed : userMealWithExceedList) {
+            String stringExceed = mealWithExceed.isExceed() ? "не превышает сут. норму" : "превышает сут. норму";
+            System.out.println(String.join(",", mealWithExceed.getDescription(), mealWithExceed.getDateTime().toString(), stringExceed));
         }
     }
 
     public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
-        // TODO return filtered list with correctly exceeded field
         Map<LocalDate, Integer> countMap = new HashMap<>();
         for (UserMeal meal : mealList) {
-            countMap.merge(meal.getDateTime().toLocalDate(),meal.getCalories(),(a,b) -> a +b);
+            countMap.merge(meal.getDateTime().toLocalDate(), meal.getCalories(), (a, b) -> a + b);
         }
 
         List<UserMealWithExceed> userMealWithExceeds = new ArrayList<>();
