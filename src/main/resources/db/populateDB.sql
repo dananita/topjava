@@ -9,3 +9,8 @@ INSERT INTO users (name, email, password) VALUES
 INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_USER', 100000),
   ('ROLE_ADMIN', 100001);
+
+INSERT INTO meals(description, datetime, callories) VALUES
+  ('Lunch','25.07.2017',510),
+  ('lunchtime','25.07.2017',675),
+  ('dinner','25.07.2017',700);
